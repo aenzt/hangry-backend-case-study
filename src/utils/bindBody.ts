@@ -1,4 +1,4 @@
-import { IncomingMessage, ServerResponse } from "http";
+import { IncomingMessage } from "http";
 
 const bindBody: Function = async (
   req: IncomingMessage
@@ -6,6 +6,7 @@ const bindBody: Function = async (
   return new Promise((resolve, reject) => {
     let body: string = "";
 
+    // Bind body to request
     try {
       req.on("data", (chunk) => {
         body += chunk.toString();

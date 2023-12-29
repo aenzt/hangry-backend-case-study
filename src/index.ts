@@ -1,6 +1,7 @@
 import { IncomingMessage, Server, ServerResponse, createServer } from "http";
 import controller from "./controllers";
 
+// Create server object
 const server: Server = createServer(
   (req: IncomingMessage, res: ServerResponse) => {
     controller(req, res);

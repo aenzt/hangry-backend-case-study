@@ -15,6 +15,7 @@ import { fromZodError } from "zod-validation-error";
 
 const userController = async (req: IncomingMessage, res: ServerResponse) => {
   switch (req.method) {
+    // GET /api/users and GET /api/users/:id
     case "GET":
       const userId = parseInt(req.url?.split("/").pop() || "", 10);
       if (userId) {
@@ -39,6 +40,7 @@ const userController = async (req: IncomingMessage, res: ServerResponse) => {
         return;
       }
 
+    // POST /api/users
     case "POST":
       try {
         const body = await bindBody(req);
@@ -59,6 +61,7 @@ const userController = async (req: IncomingMessage, res: ServerResponse) => {
       }
       break;
 
+    // DELETE /api/users/:id
     case "DELETE":
       const userIdToDelete = parseInt(req.url?.split("/").pop() || "", 10);
       if (userIdToDelete) {
@@ -73,6 +76,7 @@ const userController = async (req: IncomingMessage, res: ServerResponse) => {
         }
       }
 
+    // PATCH /api/users/:id
     case "PATCH":
       const userIdToUpdate = parseInt(req.url?.split("/").pop() || "", 10);
       if (userIdToUpdate) {
